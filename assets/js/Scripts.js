@@ -1,19 +1,49 @@
+let formulario = document.getElementById("chartContainer");
+
+
+function LimpiarErrores() {
+  document.querySelector(".errorNumero").innerHTML = "";
+  document.querySelector(".resultado").innerHTML = "";
+}
+
+function exito() {
+  document.querySelector(".resultado").innerHTML =
+    "Número enviado con éxito!!!";
+}
+
+function validar(numero) {
+  let pasamoslaValidacion = true;
+  let validacionNumero =  /\d/gim;
+
+  if (validacionNumero.test(numero) == false) {
+    document.querySelector(".errorNumero").innerHTML =
+      alert("Ingrese un numero válido");
+    pasamoslaValidacion = false;
+  }
+  return pasamoslaValidacion;
+}
+
 $(document).ready(function(){
+
+    $("botton").on("click", function(){
+
+    })
     $.ajax({
         type: "GET",
-        url: "https://www.superheroapi.com/.​",
+        url: "https://superheroapi.com/api.php/10224382433362957/",
         dataType: "json",
-        success: function (datos){
-            console.log(datos);
+        success: function (datosApi){
+            datosApi.id.forEach((u) => {
+            $("#resultado").append(`
+            <p>${u.id} - ${u.name}<p>
+            `)    
+            });
         },
         error: function (error) {
             console.log(error);
         },
     });
 });
-
-
-
 
 window.onload = function () {
 
