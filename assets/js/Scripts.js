@@ -1,6 +1,3 @@
-
-let formulario = document.getElementById("#chartContainer");
-
 function LimpiarErrores() {
   document.querySelector(".errorNumero").innerHTML = "";
   document.querySelector("#numeroIngresado").innerHTML = "";
@@ -39,12 +36,12 @@ $(document).ready(function(){
             $('#primeraAparicion').text(`Primera Aparicion : ${datosApi.biography['first-appearance']}`);
             $('#altura').text(`Altura : ${datosApi.appearance['height']} `);
             $('#peso').text(`Peso : ${datosApi.appearance['weight']} `);
-            $('#alianza').text(`Alianzas : ${datosApi.biography['aliases']}`);
+            $('#alianzas').text(`Alianzas : ${datosApi.biography.aliases}`);
+            $("#imagenHero").attr("src", `${datosApi.image.url}`);
         },
         error: function (error) {
             console.log(error);
-        },
-        
+        },       
     });    
   });
 });
