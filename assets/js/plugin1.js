@@ -1,8 +1,1 @@
-$(document).ready(function(){
-    
-    $('#resultado').hide(); 
-
-    $("#botton").on( "click", function() {
-        $('#resultado').fadeIn(1200);     
-     });
-});
+//function showDiv() { $('.cards').show(); } setTimeout(showDiv, 2000);  

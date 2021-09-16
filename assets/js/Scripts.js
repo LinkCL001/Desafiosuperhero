@@ -3,18 +3,19 @@ function validar(numero) {
   let validacionNumero = /\d/gim;
 
   if (validacionNumero.test(numero) == false) {
-    document.querySelector(".errorNumero").innerHTML = "";
     alert("Ingrese un numero válido");
     pasamoslaValidacion = false;
   }
   return pasamoslaValidacion;
 }
 
+
 $(document).ready(function () {
   $("button").on("click", function () {
     var numero = $("#numeroIngresado").val();
-    validar(numero);
-    
+    if(!validar(numero)){
+      return
+    }
     $.ajax({
       type: "GET",
       url: "https://superheroapi.com/api.php/10224382433362957/" + [numero],
@@ -34,6 +35,7 @@ $(document).ready(function () {
         $("#peso").text(`Peso : ${datosApi.appearance["weight"]} `);
         $("#alianzas").text(`Alianzas : ${datosApi.biography.aliases}`);
         $("#imagenHero").attr("src", `${datosApi.image.url}`);
+
         let poderes = datosApi.powerstats;
 
         var chart = new CanvasJS.Chart("chartContainer", {
@@ -47,11 +49,11 @@ $(document).ready(function () {
             {
               type: "pie",
               startAngle: 25,
-              toolTipContent: "<b>{label}</b>: {y}%",
+              toolTipContent: "<b>{label}</b>: ({y})",
               showInLegend: "true",
               legendText: "{label}",
               indexLabelFontSize: 16,
-              indexLabel: "{label} - {y}%",
+              indexLabel: "{label} ({y})",
               dataPoints: [
                 { y: `${poderes.combat}`, label: "Combate" },
                 { y: `${poderes.durability}`, label: "Durabilidad" },
@@ -71,3 +73,4 @@ $(document).ready(function () {
     });
   });
 });
+$("button").on("click", function () { $('.cards').show(); });
