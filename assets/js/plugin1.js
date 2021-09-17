@@ -1,1 +1,5 @@
-//function showDiv() { $('.cards').show(); } setTimeout(showDiv, 2000);  
+ $(document).ready(function(){
+     $("button").on("click",function(){
+         $(".cards").toggle()
+     })
+ });

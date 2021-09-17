@@ -2,7 +2,7 @@ function validar(numero) {
   let pasamoslaValidacion = true;
   let validacionNumero = /\d/gim;
 
-  if (validacionNumero.test(numero) == false) {
+  if (validacionNumero.test(numero) === false) {
     alert("Ingrese un numero válido");
     pasamoslaValidacion = false;
   }
@@ -31,15 +31,15 @@ $(document).ready(function () {
         $("#primeraAparicion").text(
           `Primera Aparicion : ${datosApi.biography["first-appearance"]}`
         );
-        $("#altura").text(`Altura : ${datosApi.appearance["height"]} `);
-        $("#peso").text(`Peso : ${datosApi.appearance["weight"]} `);
+        $("#altura").text(`Altura : ${datosApi.appearance["height"].join(" - ")} `);
+        $("#peso").text(`Peso : ${datosApi.appearance["weight"].join(" - ")} `);
         $("#alianzas").text(`Alianzas : ${datosApi.biography.aliases}`);
         $("#imagenHero").attr("src", `${datosApi.image.url}`);
 
         let poderes = datosApi.powerstats;
 
         var chart = new CanvasJS.Chart("chartContainer", {
-          theme: "light2", // "light1", "light2", "dark1", "dark2"
+          theme: "light2", 
           exportEnabled: true,
           animationEnabled: true,
           title: {
@@ -73,4 +73,3 @@ $(document).ready(function () {
     });
   });
 });
-$("button").on("click", function () { $('.cards').show(); });
