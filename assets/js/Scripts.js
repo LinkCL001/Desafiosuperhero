@@ -9,13 +9,13 @@ function validar(numero) {
   return pasamoslaValidacion;
 }
 
-
 $(document).ready(function () {
   $("button").on("click", function () {
     var numero = $("#numeroIngresado").val();
-    if(!validar(numero)){
+    if (!validar(numero)) {
       return
     }
+    $(".cards").toggle()
     $.ajax({
       type: "GET",
       url: "https://superheroapi.com/api.php/10224382433362957/" + [numero],
@@ -39,7 +39,7 @@ $(document).ready(function () {
         let poderes = datosApi.powerstats;
 
         var chart = new CanvasJS.Chart("chartContainer", {
-          theme: "light2", 
+          theme: "light2",
           exportEnabled: true,
           animationEnabled: true,
           title: {
